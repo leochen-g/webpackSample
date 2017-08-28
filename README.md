@@ -1126,7 +1126,7 @@ module.exports = {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack",
     "server": "webpack-dev-server --open",
-    "build": "NODE_ENV=production webpack --config ./webpack.production.config.js --progress"
+    "build": "NODE_ENV=production webpack --config ./webpack.production.config.js --progress" //由于本文是运行在MAC平台上，运行在windows平台的读者需要把此行改为"set NODE_ENV=production && webpack --config ./webpack.production.config.js --progress"
   },
   "author": "",
   "license": "ISC",
@@ -1255,6 +1255,12 @@ module.exports = {
 ![带hash值的js名](http://upload-images.jianshu.io/upload_images/1031000-2441bb1e9f8f5908.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">带hash值的js名</div>
+
+
+附上最后的项目目录结构：
+
+![目录](http://image.bloggeng.com/mulu.png)
+
 
 ### 总结
 
