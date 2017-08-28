@@ -1269,3 +1269,5 @@ module.exports = {
 这是一篇好长的文章，谢谢你的耐心，能仔细看到了这里，大概半个月前我第一次自己一步步配置项目所需的Webpack后就一直想写一篇笔记做总结，几次动笔都不能让自己满意，总觉得写不清楚。直到看到本文的英文版[Webpack for React](http://www.pro-react.com/materials/appendixA/)，真的有多次豁然开朗的感觉，喜欢看原文的点链接就可以看了。其实关于Webpack本文讲述得仍不完全，不过相信你看完后已经进入Webpack的大门，能够更好的探索其它的关于Webpack的知识了。
 
 欢迎大家在文后发表自己的观点讨论。
+
+更多前端教程可以关注我的个人博客网站：www.bloggeng.com
