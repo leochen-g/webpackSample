@@ -1,3 +1,5 @@
+最近看了一篇好文，根据这个文章重新梳理了一遍webpack打包过程，以前的一些问题也都清楚了，在这里分享一下，同时自己也做了一些小的调整
+原文链接：http://www.jianshu.com/p/42e11515c10f
 ### 写在前面的话
 
 > 阅读本文之前，先看下面这个webpack的配置文件，如果每一项你都懂，那本文能带给你的收获也许就比较有限，你可以快速浏览或直接跳过；如果你和十天前的我一样，对很多选项存在着疑惑，那花一段时间慢慢阅读本文，你的疑惑一定一个一个都会消失；如果你以前没怎么接触过Webpack，而你又你对webpack感兴趣，那么动手跟着本文中那个贯穿始终的例子写一次，写完以后你会发现你已明明白白的走进了Webpack的大门。
@@ -82,17 +84,15 @@ WebPack可以看做是**模块打包机**：它做的事情是，分析你的项
 
 Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。
 
-<div class="image-package">![Grunt和Gulp的工作流程](http://upload-images.jianshu.io/upload_images/1031000-d0693c06bb3a00e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-<div class="image-caption">Grunt和Gulp的工作流程</div>
+![Grunt和Gulp的工作流程](http://upload-images.jianshu.io/upload_images/1031000-d0693c06bb3a00e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<center>Grunt和Gulp的工作流程</center>
 
-</div>
 Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。
 
-<div class="image-package">![Webpack工作方式](//upload-images.jianshu.io/upload_images/1031000-160bc667d3b6093a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Webpack工作方式](http://upload-images.jianshu.io/upload_images/1031000-160bc667d3b6093a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<div class="image-caption">Webpack工作方式</div>
+<center>Webpack工作方式</center>
 
-</div>
 
 如果实在要把二者进行比较，Webpack的处理速度更快更直接，能打包更多不同类型的文件。
 
@@ -139,11 +139,10 @@ npm install --save-dev webpack
 
 此时项目结构如下图所示
 
-<div class="image-package">![项目结构](//upload-images.jianshu.io/upload_images/1031000-976ba1a06fd0702f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![项目结构](http://upload-images.jianshu.io/upload_images/1031000-976ba1a06fd0702f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">项目结构</div>
 
-</div>
 
 我们在**index.html**文件中写入最基础的html代码，它在这里目的在于引入打包后的js文件（这里我们先把之后打包后的js文件命名为`bundle.js`，之后我们还会详细讲述）。
 
@@ -207,19 +206,17 @@ node_modules/.bin/webpack app/main.js public/bundle.js
 
 结果如下
 
-<div class="image-package">![使用命令行打包](//upload-images.jianshu.io/upload_images/1031000-b9e69a58e3518ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![使用命令行打包](http://upload-images.jianshu.io/upload_images/1031000-b9e69a58e3518ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">使用命令行打包</div>
 
-</div>
 
 可以看出`webpack`同时编译了`main.js` 和`Greeter,js`,现在打开`index.html`,可以看到如下结果
 
-<div class="image-package">![htmlResult1](//upload-images.jianshu.io/upload_images/1031000-6cf1ecc41ef8c31d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![htmlResult1](http://upload-images.jianshu.io/upload_images/1031000-6cf1ecc41ef8c31d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">htmlResult1</div>
 
-</div>
 
 有没有很激动，已经成功的使用`Webpack`打包了一个文件了。不过在终端中进行复杂的操作，其实是不太方便且容易出错的，接下来看看Webpack的另一种更常见的使用方法。
 
@@ -277,11 +274,10 @@ module.exports = {
 
 npm的`start`命令是一个特殊的脚本名称，其特殊性表现在，在命令行中使用`npm start`就可以执行其对于的命令，如果对应的此脚本名称不是`start`，想要在命令行中运行时，需要这样用`npm run {script name}`如`npm run build`，我们在命令行中输入`npm start`试试，输出结果如下：
 
-<div class="image-package">![使用npm start 打包代码](//upload-images.jianshu.io/upload_images/1031000-a3e10146ffac4163.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![使用npm start 打包代码](http://upload-images.jianshu.io/upload_images/1031000-a3e10146ffac4163.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">使用npm start 打包代码</div>
 
-</div>
 
 现在只需要使用`npm start`就可以打包文件了，有没有觉得`webpack`也不过如此嘛，不过不要太小瞧`webpack`，要充分发挥其强大的功能我们需要修改配置文件的其它选项，一项项来看。
 
@@ -372,11 +368,11 @@ module.exports = {
 
 在终端中输入`npm run server`即可在本地的`8080`端口查看结果
 
-<div class="image-package">![开启本地服务器](//upload-images.jianshu.io/upload_images/1031000-47d5bea9ef177187.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![开启本地服务器](http://upload-images.jianshu.io/upload_images/1031000-47d5bea9ef177187.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">开启本地服务器</div>
 
-</div>
+
 
 #### Loaders
 
@@ -513,11 +509,10 @@ render(<Greeter />, document.getElementById('root'));
 
 重新使用`npm start`打包，如果之前打开的本地服务器没有关闭，你应该可以在`localhost:8080`下看到与之前一样的内容，这说明`react`和`es6`被正常打包了。
 
-<div class="image-package">![localhost:8080](//upload-images.jianshu.io/upload_images/1031000-7d2a7769709a2e36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![localhost:8080](http://upload-images.jianshu.io/upload_images/1031000-7d2a7769709a2e36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">localhost:8080</div>
 
-</div>
 
 #### Babel的配置
 
@@ -728,11 +723,11 @@ export default Greeter
 
 放心使用把，相同的类名也不会造成不同组件之间的污染。
 
-<div class="image-package">![应用了css module后的样式](//upload-images.jianshu.io/upload_images/1031000-607094f1f647d918.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![应用了css module后的样式](http://upload-images.jianshu.io/upload_images/1031000-607094f1f647d918.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">应用了css module后的样式</div>
 
-</div>
+
 
 CSS modules 也是一个很大的主题，有兴趣的话可以去[官方文档](https://github.com/css-modules/css-modules)查看更多消息
 
@@ -856,11 +851,10 @@ module.exports = {
 
 通过这个插件，打包后的JS文件显示如下
 
-<div class="image-package">![版权所有，翻版必究](//upload-images.jianshu.io/upload_images/1031000-9d190ecceaeb9e0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![版权所有，翻版必究](http://upload-images.jianshu.io/upload_images/1031000-9d190ecceaeb9e0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">版权所有，翻版必究</div>
 
-</div>
 
 这就是webpack插件的基础用法了，下面给大家推荐几个常用的插件
 
@@ -951,11 +945,11 @@ module.exports = {
 
 再次执行`npm start`你会发现，build文件夹下面生成了`bundle.js`和`index.html`。
 
-<div class="image-package">![build文件夹](//upload-images.jianshu.io/upload_images/1031000-0e13dc8a49d9cda5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![build文件夹](http://upload-images.jianshu.io/upload_images/1031000-0e13dc8a49d9cda5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">build文件夹</div>
 
-</div>
+
 
 #### Hot Module Replacement
 
@@ -1166,69 +1160,73 @@ npm install --save-dev extract-text-webpack-plugin
 
 ```
 // webpack.production.config.js
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack')
+//引入html模版自动生成插件
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-    entry: __dirname + "/app/main.js",//已多次提及的唯一入口文件
+    entry: __dirname + '/app/main.js', //入口文件
     output: {
-        path: __dirname + "/build",
-        filename: "bundle.js"
+        path: __dirname + '/build/', // 打包后存放的位置
+        filename: "bundle-[hash].js"
     },
-    devtool: 'none',
+    //生成Source Maps
+    devtool: "none",
+    //构建本地服务器，监听代码修改
     devServer: {
-        contentBase: "./public",//本地服务器所加载的页面所在的目录
+        contentBase: './build',//本地服务器所加载的页面所在的目录
         historyApiFallback: true,//不跳转
-        inline: true,
+        inline: true, //实时刷新
         hot: true
     },
+    //配置bable,stye-loader,css-loader,postcss-loader
     module: {
         rules: [
             {
                 test: /(\.jsx|\.js)$/,
                 use: {
-                    loader: "babel-loader"
+                    loader: "babel-loader",
                 },
                 exclude: /node_modules/
             },
             {
                 test: /\.css$/,
-                use: [
-                    {
-                        loader: "style-loader"
-                    }, {
+                use: ExtractTextPlugin.extract({
+                    fallback:"style-loader",
+                    use: [
+                        {
                         loader: "css-loader",
-                        options: {
+                        options:{
                             modules: true
                         }
-                    }, {
-                        loader: "postcss-loader"
+                    },{
+                        loader:"postcss-loader"
+                        }
+                    ],
                     }
-                ]
-            }
+                )
+            },
         ]
     },
     plugins: [
         new webpack.BannerPlugin('版权所有，翻版必究'),
         new HtmlWebpackPlugin({
-            template: __dirname + "/app/index.tmpl.html"
+            template:__dirname + '/app/index.tmpl.html' //new 一个实例传入相关参数
         }),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin(),
-        new ExtractTextPlugin("style.css")
+        new webpack.optimize.OccurrenceOrderPlugin(), //为组件分配ID
+        new webpack.optimize.UglifyJsPlugin(), //uglifyJsPlugin：压缩JS代码
+        new ExtractTextPlugin("style.css") //分离CSS和JS文件
     ],
-};
-
+}
 ```
 
 此时执行`npm run build`可以看见代码是被压缩后的
 
-<div class="image-package">![压缩后的代码](//upload-images.jianshu.io/upload_images/1031000-f9b89ce486539162.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![压缩后的代码](http://upload-images.jianshu.io/upload_images/1031000-f9b89ce486539162.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">压缩后的代码</div>
 
-</div>
 
 #### 缓存
 
@@ -1254,11 +1252,9 @@ module.exports = {
 
 现在用户会有合理的缓存了。
 
-<div class="image-package">![带hash值的js名](//upload-images.jianshu.io/upload_images/1031000-2441bb1e9f8f5908.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![带hash值的js名](http://upload-images.jianshu.io/upload_images/1031000-2441bb1e9f8f5908.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <div class="image-caption">带hash值的js名</div>
-
-</div>
 
 ### 总结
 
